@@ -23,11 +23,6 @@ docker compose -f $COMPOSE_PATH/$COMPOSE_FILE up
 docker compose -f $COMPOSE_PATH/$COMPOSE_FILE  up -d
 ~~~
 
-## Run in detached mode (background)
-~~~bash
-docker compose -f $COMPOSE_PATH/$COMPOSE_FILE  up -d
-~~~
-
 ## List container in compose
 ~~~bash
 docker compose -f $COMPOSE_PATH/$COMPOSE_FILE ps 
