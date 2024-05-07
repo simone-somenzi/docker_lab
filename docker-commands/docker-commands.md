@@ -172,6 +172,12 @@ docker run \
     nginx
 ~~~
 
+## Create a network with specific subnet
+~~~bash
+docker network create test-subnet --subnet 192.168.200.0/24
+~~~
+
+
 ~~~bash
 docker run \
     --rm \
