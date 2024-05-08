@@ -1,3 +1,4 @@
+name: mongo-service
 services:
   db:
     container_name: mongo-dev

@@ -1,3 +1,4 @@
+name: postgres-service
 services:
   db:
     container_name: local_pgdb
