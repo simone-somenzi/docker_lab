@@ -1,0 +1,4 @@
+services:
+  db:
+    environment:
+      - DEBUG_LEVEL=error

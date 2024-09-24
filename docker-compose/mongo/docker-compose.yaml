@@ -1,0 +1,40 @@
+name: mongo-service
+services:
+  db:
+    container_name: mongo-dev
+    image: mongo:4.4.5
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_DATABASE=$MONGO_INITDB_DATABASE
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_INITDB_ROOT_PASSWORD
+    networks: 
+      - mongo-compose-network
+    ports:
+      - '27017:27017'
+    volumes: 
+      - /tmp/mongo:/data/db
+  
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express
+    depends_on:
+      - db
+    networks: 
+      - mongo-compose-network
+    env_file:
+      - .env
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=db
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=$MONGO_INITDB_ROOT_USERNAME
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=$MONGO_INITDB_ROOT_PASSWORD
+    #   - ME_CONFIG_BASICAUTH_USERNAME=$ME_CONFIG_BASICAUTH_USERNAME
+    #   - ME_CONFIG_BASICAUTH_PASSWORD=$ME_CONFIG_BASICAUTH_PASSWORD
+      - ME_CONFIG_MONGODB_URL=mongodb://db:27017
+    ports:
+      - '8081:8081'
+    volumes: 
+      - /tmp/mongo:/data/db      
+
+networks:
+  mongo-compose-network:
+    driver: bridge
